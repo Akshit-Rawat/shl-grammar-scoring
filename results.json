@@ -1,0 +1,120 @@
+{
+  "config": {
+    "asr": "whisper small.en",
+    "text_embedding": "sentence-transformers/all-mpnet-base-v2",
+    "grammar_model": "textattack/roberta-base-CoLA",
+    "languagetool": true,
+    "audio": "facebook/wav2vec2-base layer 8, full clip, mean+std",
+    "whisper_encoder": "openai/whisper-small layer 9",
+    "dropped_score0_clips": true,
+    "n_train": 732,
+    "feature_set": "Text + both audio",
+    "n_features": 4629,
+    "ridge_alpha": 2.5118864315095824
+  },
+  "metrics": {
+    "Baseline (predict mean)": {
+      "RMSE": 1.0137,
+      "Pearson": NaN,
+      "MAE": 0.876,
+      "Spearman": NaN,
+      "R2": 0.0
+    },
+    "Training (fit on all train)": {
+      "RMSE": 0.3328,
+      "Pearson": 0.9488,
+      "MAE": 0.2565,
+      "Spearman": 0.9466,
+      "R2": 0.8922
+    },
+    "5-fold CV: Text + both audio": {
+      "RMSE": 0.5352,
+      "Pearson": 0.8495,
+      "MAE": 0.4102,
+      "Spearman": 0.8473,
+      "R2": 0.7212
+    }
+  },
+  "ablation": {
+    "Audio only (wav2vec2 L8)": {
+      "n_features": 1536,
+      "RMSE": 0.606,
+      "MAE": 0.4657,
+      "Pearson": 0.8019,
+      "Spearman": 0.8001,
+      "R2": 0.6426
+    },
+    "Interpretable features": {
+      "n_features": 21,
+      "RMSE": 0.7274,
+      "MAE": 0.5773,
+      "Pearson": 0.6971,
+      "Spearman": 0.7035,
+      "R2": 0.4851
+    },
+    "Sentence embedding": {
+      "n_features": 768,
+      "RMSE": 0.7782,
+      "MAE": 0.6315,
+      "Pearson": 0.641,
+      "Spearman": 0.6564,
+      "R2": 0.4108
+    },
+    "CoLA embedding": {
+      "n_features": 768,
+      "RMSE": 0.6438,
+      "MAE": 0.5178,
+      "Pearson": 0.7725,
+      "Spearman": 0.7824,
+      "R2": 0.5966
+    },
+    "All text features": {
+      "n_features": 1557,
+      "RMSE": 0.6265,
+      "MAE": 0.4981,
+      "Pearson": 0.7862,
+      "Spearman": 0.7971,
+      "R2": 0.6181
+    },
+    "Text + audio": {
+      "n_features": 3093,
+      "RMSE": 0.5648,
+      "MAE": 0.4396,
+      "Pearson": 0.8305,
+      "Spearman": 0.8299,
+      "R2": 0.6895
+    },
+    "Audio only (Whisper encoder)": {
+      "n_features": 1536,
+      "RMSE": 0.5549,
+      "MAE": 0.4298,
+      "Pearson": 0.8375,
+      "Spearman": 0.8349,
+      "R2": 0.7004
+    },
+    "Both audio blocks": {
+      "n_features": 3072,
+      "RMSE": 0.5605,
+      "MAE": 0.4264,
+      "Pearson": 0.8335,
+      "Spearman": 0.8316,
+      "R2": 0.6943
+    },
+    "Text + Whisper audio": {
+      "n_features": 3093,
+      "RMSE": 0.5467,
+      "MAE": 0.4191,
+      "Pearson": 0.8422,
+      "Spearman": 0.8414,
+      "R2": 0.7091
+    },
+    "Text + both audio": {
+      "n_features": 4629,
+      "RMSE": 0.5352,
+      "MAE": 0.4102,
+      "Pearson": 0.8495,
+      "Spearman": 0.8473,
+      "R2": 0.7212
+    }
+  }
+}
